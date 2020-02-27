@@ -19,6 +19,21 @@ const routes = [
     path: '/signup',
     name: 'SignUp',
     component: () => import(/* webpackChunkName: "about" */ '../views/SignUp.vue')
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Dashboard.vue')
+  },
+  {
+    path: '/addmovie',
+    name: 'AddMovie',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AddMovie.vue')
+  },
+  {
+    path: '/editmovie/:movieId',
+    name: 'EditMovie',
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditMovie.vue')
   }
 ]
 

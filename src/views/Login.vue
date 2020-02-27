@@ -43,9 +43,10 @@ export default {
       }
       axios.post(`${this.url}/users/admin/signin`, obj)
         .then((response) => {
-          console.log(response.data)
-          console.log(response.headers)
-          this.$router.push('/')
+          localStorage.setItem('token', response.headers['x-auth-token'])
+          localStorage.setItem('id', response.data.id)
+          localStorage.setItem('username', response.data.username)
+          this.$router.push('/dashboard')
         })
         .catch((error) => {
           console.log(error.message)
