@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar/>
-    <router-view/>
+    <router-view :url="url"/>
   </div>
 </template>
 
@@ -36,6 +36,12 @@ export default {
   name: 'Home',
   components: {
     Navbar
+  },
+
+  data: () => {
+    return {
+      url: 'http://localhost:3000'
+    }
   }
 }
 </script>
