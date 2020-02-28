@@ -53,7 +53,7 @@ export default {
 
       axios(options)
         .then(() => {
-          console.log('edit movie success')
+          this.$router.push('/dashboard')
         })
         .catch((error) => {
           console.log(error.message)
