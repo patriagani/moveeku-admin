@@ -19,6 +19,7 @@
 
 <script>
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import Footer from '@/components/Footer.vue'
 
 export default {
@@ -54,12 +55,21 @@ export default {
 
       axios(options)
         .then(() => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Yeaay',
+            text: 'Movie Added',
+          })
           this.imdbid = "",
           this.price = 1000,
           this.watchlink = ""
         })
         .catch((error) => {
-          console.log(error.message)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong! '+ error.message,
+          })
         })
     },
   }

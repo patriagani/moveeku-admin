@@ -10,7 +10,7 @@
                 <input v-model="price" class="u-full-width" type="number" placeholder="0" id="exampleNumberInput">
                 <label for="exampleEmailInput">WatchLink</label>
                 <input v-model="watchlink" class="u-full-width" type="text" placeholder="Watchlink URL" id="exampleTextInput">
-                <input @click.prevent="editMovie" class="button-primary" type="submit" value="Post Movie">
+                <input @click.prevent="editMovie" class="button-primary" type="submit" value="Save Movie">
             </form>
         </div>
         <Footer/>
@@ -19,6 +19,7 @@
 
 <script>
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import Footer from '@/components/Footer.vue'
 
 export default {
@@ -53,6 +54,11 @@ export default {
 
       axios(options)
         .then(() => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Yeaay',
+            text: 'Movie Saved',
+          })
           this.$router.push('/dashboard')
         })
         .catch((error) => {
