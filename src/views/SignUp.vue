@@ -56,11 +56,33 @@ export default {
         .catch((error) => {
           console.log(error.message)
         })
+    },
+
+    adminCheck() {
+      const options = {
+          method: 'GET',
+          headers: {'x-auth-token': localStorage.getItem('token')},
+          baseURL: `${this.url}/users/admin/admincheck`
+      }
+
+      axios(options)
+        .then((response) => {
+          if (response.data.admin) {
+            this.$router.push('dashboard')
+          }
+        })
+        .catch(() => {
+          console.log('Please Signup')
+        })
     }
   },
 
   components: {
     Footer
+  },
+
+  created() {
+    this.adminCheck()
   }
 }
 </script>

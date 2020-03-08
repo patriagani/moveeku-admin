@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Navbar/>
-    <router-view :url="url"/>
+    <Navbar @adminlogout="adminLogout" :isLogin="isLogin" :url="url"/>
+    <router-view  @adminlogin="adminLogin" :isLogin="isLogin" :url="url"/>
   </div>
 </template>
 
@@ -40,7 +40,18 @@ export default {
 
   data: () => {
     return {
-      url: 'http://localhost:3000'
+      url: 'http://localhost:3000',
+      isLogin: false
+    }
+  },
+
+  methods: {
+    adminLogin() {
+      this.isLogin = true
+    },
+
+    adminLogout() {
+      this.isLogin = false
     }
   }
 }

@@ -75,11 +75,29 @@ export default {
         .catch((error) => {
           console.log(error.message)
         })
+    },
+
+    adminCheck() {
+      const options = {
+          method: 'GET',
+          headers: {'x-auth-token': localStorage.getItem('token')},
+          baseURL: `${this.url}/users/admin/admincheck`
+      }
+
+      axios(options)
+        .then((response) => {
+          if (response.data.admin) {
+            this.getMovie()
+          }
+        })
+        .catch(() => {
+          this.$router.push('login')
+        })
     }
   },
 
   created() {
-    this.getMovie()
+    this.adminCheck()
   }
 }
 </script>

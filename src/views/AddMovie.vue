@@ -72,6 +72,22 @@ export default {
           })
         })
     },
+
+    adminCheck() {
+      const options = {
+          method: 'GET',
+          headers: {'x-auth-token': localStorage.getItem('token')},
+          baseURL: `${this.url}/users/admin/admincheck`
+      }
+
+      axios(options)
+        .catch(() => {
+          this.$router.push('login')
+        })
+    }
+  },
+  created() {
+    this.adminCheck()
   }
 }
 </script>

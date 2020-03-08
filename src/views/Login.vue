@@ -47,11 +47,31 @@ export default {
           localStorage.setItem('id', response.data.id)
           localStorage.setItem('username', response.data.username)
           this.$router.push('/dashboard')
+          this.$emit('adminlogin')
         })
         .catch((error) => {
           console.log(error.message)
         })
+    },
+
+    adminCheck() {
+      const options = {
+          method: 'GET',
+          headers: {'x-auth-token': localStorage.getItem('token')},
+          baseURL: `${this.url}/users/admin/admincheck`
+      }
+
+      axios(options)
+        .then((response) => {
+          if (response.data.admin) {
+            this.$router.push('dashboard')
+          }
+        })
     }
+  },
+
+  created() {
+    this.adminCheck()
   }
 
 }
