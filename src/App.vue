@@ -31,6 +31,7 @@
 <script>
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue'
+import axios from 'axios'
 
 export default {
   name: 'Home',
@@ -52,7 +53,29 @@ export default {
 
     adminLogout() {
       this.isLogin = false
+    },
+
+    adminCheck() {
+      const options = {
+          method: 'GET',
+          headers: {'x-auth-token': localStorage.getItem('token')},
+          baseURL: `${this.url}/users/admin/admincheck`
+      }
+
+      axios(options)
+        .then((response) => {
+          if (response.data.admin) {
+            this.isLogin = true
+          }
+        })
+        .catch(() => {
+          this.$router.push('login')
+        })
     }
+  },
+
+  created() {
+    this.adminCheck()
   }
 }
 </script>
